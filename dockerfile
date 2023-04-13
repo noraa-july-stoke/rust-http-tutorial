@@ -1,16 +1,17 @@
 # Use an official Rust runtime as a parent image
 FROM rust:latest
 
-# Set the working directory to /usr/src/app
-WORKDIR /usr/src/rust-serv/server
+# Set the working directory to /usr/src/server
+WORKDIR /usr/src/server
 
-# Copy the Cargo.toml and Cargo.lock files to the container
+# Copy files into docker image
 COPY . .
 
 # Build the Rust application
 RUN cargo build --release
 
-# Copy the source code to the container
+# Copy the compiled source code from the run cargo build command
+# to the container
 COPY ./target/release ./
 
 # Expose port 8080 to the outside world
@@ -18,3 +19,5 @@ EXPOSE 8080
 
 # Run the server when the container launches
 CMD ["./target/release/main"]
+
+#usr/src/server/target/release/main
