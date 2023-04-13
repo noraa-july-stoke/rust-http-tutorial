@@ -21,7 +21,7 @@ fn main() {
     });
 
     // Create a new TCP listener that listens for incoming connections on port 8080.
-    let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
+    let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
     // Print a message to the console indicating that the server is now listening.
     println!("Server listening on port 8080");
 

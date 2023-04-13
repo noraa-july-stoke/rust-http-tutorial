@@ -1,23 +1,11 @@
-# Use an official Rust runtime as a parent image
+# 1. This tells docker to use the Rust official image
 FROM rust:latest
 
-# Set the working directory to /usr/src/server
-WORKDIR /usr/src/server
+# 2. Copy the files in your machine to the Docker image
+COPY ./ ./
 
-# Copy files into docker image
-COPY . .
-
-# Build the Rust application
+# Build your program for release
 RUN cargo build --release
 
-# Copy the compiled source code from the run cargo build command
-# to the container
-COPY ./target/release ./
-
-# Expose port 8080 to the outside world
-EXPOSE 8080
-
-# Run the server when the container launches
+# Run the binary generated from the cargo build command
 CMD ["./target/release/main"]
-
-#usr/src/server/target/release/main
